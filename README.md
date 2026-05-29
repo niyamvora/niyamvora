@@ -20,10 +20,29 @@
 
 ### 🛠 Stack
 
+<p align="center"><strong>Languages</strong></p>
 <p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,nextjs,react,nodejs,python,fastapi,postgres,redis,docker,vercel,tailwind,supabase,git,github,bash,vscode" />
-  </a>
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=ts,js,py,kotlin,swift,dart,bash" /></a>
+</p>
+
+<p align="center"><strong>Frameworks & UI</strong></p>
+<p align="center">
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=nextjs,react,nodejs,expressjs,fastapi,tailwind,flutter" /></a>
+</p>
+
+<p align="center"><strong>Databases</strong></p>
+<p align="center">
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=postgres,mongodb,mysql,mssql,redis,prisma,supabase,graphql" /></a>
+</p>
+
+<p align="center"><strong>Cloud & Infra</strong></p>
+<p align="center">
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=vercel,aws,digitalocean,cloudflare,docker,terraform,nginx,linux,githubactions" /></a>
+</p>
+
+<p align="center"><strong>Tools</strong></p>
+<p align="center">
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=git,github,vscode,postman,figma" /></a>
 </p>
 
 ---
