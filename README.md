@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/niyamvora">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=620&lines=Building+fontfetch.dev;Real-time+stock+dashboards;Logistics+ops+platforms;TypeScript+%E2%80%A2+Python+%E2%80%A2+Vercel" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=620&lines=Building+fontfetch;Open-source+web+font+scraper;TypeScript+%E2%80%A2+Python+%E2%80%A2+Vercel" alt="Typing SVG" />
   </a>
 </p>
 
@@ -11,8 +11,7 @@
 
 ### 🧑‍💻 About me
 
-- 🔭 Currently building [**fontfetch.dev**](https://github.com/niyamvora/fontfetch), a real-time stock dashboard, and a logistics ops platform
-- 🌱 Exploring **Rust**, **edge compute**, and **AI agents**
+- 🔭 Currently building [**fontfetch**](https://github.com/niyamvora/fontfetch)
 - 💬 Ask me about **TypeScript**, **Next.js**, **real-time data**, **product design**
 - 📍 Based across **SE Asia** — India · Vietnam · Japan · Singapore
 - 📫 Reach me at **niyamvora@gmail.com**
