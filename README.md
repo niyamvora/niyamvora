@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://github.com/niyamvora">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=620&lines=Building+fontfetch;Real-time+data+%26+analytics+dashboards;Logistics+%26+delivery+ops+platforms;TypeScript+%E2%80%A2+Python+%E2%80%A2+Next.js+%E2%80%A2+Vercel" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=650&lines=Building+fontfetch+%E2%80%94+open+source;Multi-channel+CRM+%26+messaging+platforms;End-to-end-encrypted+chat+apps;Real-time+market-research+terminals;TypeScript+%E2%80%A2+Rust+%E2%80%A2+Next.js+%E2%80%A2+Elixir" alt="Typing SVG" />
   </a>
 </p>
 
@@ -20,9 +20,9 @@
 ### 🧑‍💻 About me
 
 - 🤖 **Product manager turned AI developer** — I ship full products end-to-end
-- 🔭 Currently building [**fontfetch**](https://github.com/niyamvora/fontfetch) — an open-source web-font scraper (CLI + web)
-- ⚡ Recently shipped real-time dashboards, logistics platforms & analytics tools
-- 💬 Ask me about **TypeScript**, **Next.js**, **real-time data**, **Postgres/Redis**, **product design**
+- 🔭 Currently building [**fontfetch**](https://github.com/niyamvora/fontfetch) (open-source) and **Enigma**, an end-to-end-encrypted messenger
+- ⚡ Shipped a multi-channel CRM, real-time market terminals & equity-research platforms
+- 💬 Ask me about **TypeScript**, **Next.js**, **real-time data**, **Postgres/Mongo**, **product design**
 - 📍 Based across **SE Asia** — India · Vietnam · Japan · Singapore
 - 📫 Reach me at **niyamvora@gmail.com**
 
@@ -38,13 +38,16 @@
 
 | Project | What it does | Stack |
 | --- | --- | --- |
-| 🔤 **[fontfetch](https://github.com/niyamvora/fontfetch)** | Download every web font from any site into a project-ready folder — CSS, manifest & framework configs ready to drop in | `TypeScript` · `CLI` · `Web` |
-| 📈 **DHS Dashboard** 🔒 | Real-time stock & index analytics — live WebSocket price streaming, comparative charts, daily movers, sector returns | `Next.js` · `Redis` · `WebSockets` · `Postgres` |
-| 🚚 **Simplideliver** 🔒 | End-to-end logistics & delivery ops platform — orders, routing, fleet, dashboards | `Next.js` · `Prisma` · `Docker` · `Terraform` |
-| 📊 **Fundalysis** 🔒 | Mutual-fund analytics & screening engine over large financial datasets | `Python` · `MSSQL` · `Next.js` |
-| 🌐 **[Portfolio](https://niyamvora.vercel.app)** | Personal site & writing — niyamvora.vercel.app | `Next.js` · `MDX` · `Tailwind` |
+| 🔤 **[fontfetch](https://github.com/niyamvora/fontfetch)** · OSS | Paste a URL, get every webfont — extracted, licence-classified, project-ready. One `npm i`, zero runtime deps | `TypeScript` · `Next.js` · `Node` |
+| 💬 **[SimpliDeliver](https://www.simplideliver.com)** 🔒 | Multi-channel CRM & customer-messaging platform — WhatsApp / Instagram / Messenger / Zalo in one inbox, in-chat payments, visual chatbot builder (~208k LOC) | `Next.js` · `Postgres` · `MongoDB` · `AWS` · `Terraform` |
+| 🔐 **Enigma** 🔒 | Privacy-first native messenger — opt-in end-to-end-encrypted tier (MLS / RFC 9420), one Rust crypto core shared across iOS & Android | `Rust` · `Swift` · `Kotlin` · `Elixir` |
+| 📊 **[ShinobiData](https://shinobidata.com)** 🔒 | Bloomberg-grade equity research — 10k+ tickers, 200+ screener fields, sub-50ms filters, NL queries in 5 languages | `Next.js` · `React 19` · `Postgres` |
+| 📈 **DHS Dashboard** 🔒 | Real-time Indian-markets terminal — 200+ stocks, 4 broker feeds, sub-second WebSocket fan-out with multi-source failover | `Next.js` · `WebSockets` · `Postgres` · `Redis` |
+| 🐎 **[DarkHorseStocks](https://www.darkhorsestocks.in)** 🔒 | Subscription stock-research platform — REST + GraphQL, 3 payment gateways, cross-subdomain SSO, RN mobile app | `Node` · `GraphQL` · `MSSQL` · `React` |
+| 🔑 **[Secrets Backup](https://file.shinobidata.com)** 🔒 | Self-hosted, tamper-evident secrets vault on a single S3 bucket — a Vault / Doppler alternative at near-zero infra cost | `Next.js` · `AWS S3` · `TypeScript` |
+| ☁️ **AWS ECS Consolidation** 🔒 | Collapsed 3 AWS accounts + 4 EC2s into one ECS host — cut the cloud bill **75%** (~$2.6k/yr) with ~5s downtime | `AWS ECS` · `Docker` · `Nginx` · `Bash` |
 
-<sub>🔒 = private repo · also building WhatsApp automation bots, Flutter/React-Native mobile apps, and internal analytics tooling.</sub>
+<sub>🔗 links go to live products · 🔒 = source private · also: React-Native & Flutter mobile apps, WhatsApp automation bots, internal tooling.</sub>
 
 ---
 
@@ -52,7 +55,7 @@
 
 <p align="center"><strong>Languages</strong></p>
 <p align="center">
-  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=ts,js,py,kotlin,swift,dart,bash" /></a>
+  <a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=ts,js,py,rust,kotlin,swift,dart,elixir,bash" /></a>
 </p>
 
 <p align="center"><strong>Frameworks & UI</strong></p>
