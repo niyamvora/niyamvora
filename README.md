@@ -93,6 +93,14 @@
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/niyamvora/niyamvora/main/assets/github-languages.svg" alt="Most used languages" />
+</p>
+
+<p align="center">
+  <sub>Counts <strong>every</strong> repo I commit to — private included — so it differs from the card above, which only sees public repos. Generated from a local snapshot, no third-party service.</sub>
+</p>
+
+<p align="center">
   <img src="https://streak-stats.demolab.com?user=niyamvora&theme=tokyonight&hide_border=true" />
 </p>
 
