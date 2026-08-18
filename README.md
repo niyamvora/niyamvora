@@ -108,6 +108,39 @@
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=niyamvora&theme=tokyo-night&hide_border=true&area=true&bg_color=0D1117&color=58A6FF&line=58A6FF&point=ffffff" alt="activity graph" />
 </p>
 
+<!--START_SECTION:github-stats-->
+
+#### 💬 Languages by share of code
+
+```text
+TypeScript    27.0 MB   ████████████░░░░░░░░░░░░░   49.61 %
+JavaScript    7.5 MB    ███░░░░░░░░░░░░░░░░░░░░░░   13.70 %
+HTML          5.0 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    9.25 %
+Kotlin        3.7 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    6.72 %
+Swift         2.9 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.37 %
+Python        2.9 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.32 %
+TSQL          1.3 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.39 %
+CSS           1.2 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.14 %
+Other         3.0 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.49 %
+```
+
+#### 📊 Commits per month, split by language
+
+<sub>Commits, not hours — GitHub's API has no notion of time spent. Each repo's commits count toward its dominant language.</sub>
+
+| Month | Commits | TypeScript | Kotlin | JavaScript | Dart | Shell | Other |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Aug 2026 | **327** | 195 | 112 | · | · | 19 | 1 |
+| Jul 2026 | **746** | 462 | 262 | 20 | · | · | 2 |
+| Jun 2026 | **430** | 114 | 270 | 15 | 28 | · | 3 |
+| May 2026 | **528** | 476 | · | 13 | · | · | 39 |
+| Apr 2026 | **120** | 114 | · | 4 | · | · | 2 |
+| Mar 2026 | **47** | 43 | · | 4 | · | · | · |
+
+<sub>Counted across 59 repos, 53 of them private. Generated from a local snapshot on 18 Aug 2026 — no third-party service, no WakaTime.</sub>
+
+<!--END_SECTION:github-stats-->
+
 ---
 
 ### 🐍 Contribution snake
