@@ -126,16 +126,16 @@ Other         3.0 MB    █░░░░░░░░░░░░░░░░░�
 
 #### 📊 Commits per month, split by language
 
-<sub>Commits, not hours — GitHub's API has no notion of time spent. Each repo's commits count toward its dominant language.</sub>
+<sub>Commits, not hours — GitHub's API has no notion of time spent. A repo's commits split across its languages by share of code, so a polyglot repo counts toward each one.</sub>
 
-| Month | Commits | TypeScript | Kotlin | JavaScript | Dart | Shell | Other |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Aug 2026 | **327** | 195 | 112 | · | · | 19 | 1 |
-| Jul 2026 | **746** | 462 | 262 | 20 | · | · | 2 |
-| Jun 2026 | **430** | 114 | 270 | 15 | 28 | · | 3 |
-| May 2026 | **528** | 476 | · | 13 | · | · | 39 |
-| Apr 2026 | **120** | 114 | · | 4 | · | · | 2 |
-| Mar 2026 | **47** | 43 | · | 4 | · | · | · |
+| Month | Commits | TypeScript | Kotlin | Swift | JavaScript | Elixir | Rust | Other |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Aug 2026 | **327** | 177 | 53 | 42 | 4 | 11 | 5 | 35 |
+| Jul 2026 | **746** | 418 | 123 | 97 | 27 | 25 | 10 | 46 |
+| Jun 2026 | **430** | 95 | 127 | 100 | 26 | 26 | 11 | 45 |
+| May 2026 | **528** | 428 | · | · | 46 | · | · | 54 |
+| Apr 2026 | **120** | 96 | · | · | 15 | · | · | 9 |
+| Mar 2026 | **47** | 40 | · | · | 5 | · | · | 2 |
 
 <sub>Counted across 59 repos, 53 of them private. Generated from a local snapshot on 18 Aug 2026 — no third-party service, no WakaTime.</sub>
 
