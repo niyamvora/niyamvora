@@ -41,19 +41,19 @@
 
 | Project | What it does | Stack |
 | --- | --- | --- |
-| 🔤 **[fontfetch](https://github.com/niyamvora/fontfetch)** · OSS | Paste a URL, get every webfont — extracted, licence-classified, project-ready. One `npm i`, zero runtime deps | `TypeScript` · `Next.js` · `Node` |
-| 🎯 **[Component Picker](https://github.com/niyamvora/component-picker)** · OSS | Chrome & Firefox extension — hover any component on any site, click, and your clipboard holds an AI-ready bundle: HTML, browser-resolved CSS, forced hover/focus states, theme pairs, responsive diffs, design tokens | `TypeScript` · `Chrome MV3` · `CDP` · `MCP` |
-| 💬 **[SimpliDeliver](https://www.simplideliver.com)** 🔒 | Multi-channel CRM & customer-messaging platform — WhatsApp / Instagram / Messenger / Zalo in one inbox, in-chat payments, visual chatbot builder (~208k LOC) | `Next.js` · `Postgres` · `MongoDB` · `AWS` · `Terraform` |
-| 📧 **[SimpliDeliver Email](https://simplideliver.com/email/)** 🔒 | Developer-first transactional email platform on AWS SES — REST API with idempotency & full request logs, SES event pipeline with suppression, BYODKIM domain verification, dashboard, [SDK on npm](https://www.npmjs.com/package/simplideliver-email) & 351 pages of docs | `TypeScript` · `Hono` · `Next.js` · `AWS SES` · `Prisma` |
-| 🔐 **Enigma** 🔒 | Privacy-first native messenger — opt-in end-to-end-encrypted tier (MLS / RFC 9420), one Rust crypto core shared across iOS & Android | `Rust` · `Swift` · `Kotlin` · `Elixir` |
-| 📊 **[ShinobiData](https://shinobidata.com)** 🔒 | Bloomberg-grade equity research — 10k+ tickers, 200+ screener fields, sub-50ms filters, NL queries in 5 languages | `Next.js` · `React 19` · `Postgres` |
-| 🔌 **[ShinobiData MCP](https://github.com/dark-horse-stocks/shinobidata)** · OSS | Portfolio analytics + US-equity research as an MCP server — 32 OAuth-secured tools for Claude, ChatGPT & any MCP client, live at [mcp.shinobidata.com](https://mcp.shinobidata.com) | `MCP` · `OAuth 2.1` · `TypeScript` · `Postgres` |
-| 📈 **DHS Dashboard** 🔒 | Real-time Indian-markets terminal — 200+ stocks, 4 broker feeds, sub-second WebSocket fan-out with multi-source failover | `Next.js` · `WebSockets` · `Postgres` · `Redis` |
-| 🐎 **[DarkHorseStocks](https://www.darkhorsestocks.in)** 🔒 | Subscription stock-research platform — REST + GraphQL, 3 payment gateways, cross-subdomain SSO, RN mobile app | `Node` · `GraphQL` · `MSSQL` · `React` |
-| 🔑 **[Secrets Backup](https://file.shinobidata.com)** 🔒 | Self-hosted, tamper-evident secrets vault on a single S3 bucket — a Vault / Doppler alternative at near-zero infra cost | `Next.js` · `AWS S3` · `TypeScript` |
-| ☁️ **AWS ECS Consolidation** 🔒 | Collapsed 3 AWS accounts + 4 EC2s into one ECS host — cut the cloud bill **75%** (~$2.6k/yr) with ~5s downtime | `AWS ECS` · `Docker` · `Nginx` · `Bash` |
+| **[fontfetch](https://github.com/niyamvora/fontfetch)** · OSS | Paste a URL, get every webfont — extracted, licence-classified, project-ready. One `npm i`, zero runtime deps | `TypeScript` · `Next.js` · `Node` |
+| **[Component Picker](https://github.com/niyamvora/component-picker)** · OSS | Chrome & Firefox extension — hover any component on any site, click, and your clipboard holds an AI-ready bundle: HTML, browser-resolved CSS, forced hover/focus states, theme pairs, responsive diffs, design tokens | `TypeScript` · `Chrome MV3` · `CDP` · `MCP` |
+| **[SimpliDeliver](https://www.simplideliver.com)** · private | Multi-channel CRM & customer-messaging platform — WhatsApp / Instagram / Messenger / Zalo in one inbox, in-chat payments, visual chatbot builder (~208k LOC) | `Next.js` · `Postgres` · `MongoDB` · `AWS` · `Terraform` |
+| **[SimpliDeliver Email](https://simplideliver.com/email/)** · private | Developer-first transactional email platform on AWS SES — REST API with idempotency & full request logs, SES event pipeline with suppression, BYODKIM domain verification, dashboard, [SDK on npm](https://www.npmjs.com/package/simplideliver-email) & 351 pages of docs | `TypeScript` · `Hono` · `Next.js` · `AWS SES` · `Prisma` |
+| **Enigma** · private | Privacy-first native messenger — opt-in end-to-end-encrypted tier (MLS / RFC 9420), one Rust crypto core shared across iOS & Android | `Rust` · `Swift` · `Kotlin` · `Elixir` |
+| **[ShinobiData](https://shinobidata.com)** · private | Bloomberg-grade equity research — 10k+ tickers, 200+ screener fields, sub-50ms filters, NL queries in 5 languages | `Next.js` · `React 19` · `Postgres` |
+| **[ShinobiData MCP](https://github.com/dark-horse-stocks/shinobidata)** · OSS | Portfolio analytics + US-equity research as an MCP server — 32 OAuth-secured tools for Claude, ChatGPT & any MCP client, live at [mcp.shinobidata.com](https://mcp.shinobidata.com) | `MCP` · `OAuth 2.1` · `TypeScript` · `Postgres` |
+| **DHS Dashboard** · private | Real-time Indian-markets terminal — 200+ stocks, 4 broker feeds, sub-second WebSocket fan-out with multi-source failover | `Next.js` · `WebSockets` · `Postgres` · `Redis` |
+| **[DarkHorseStocks](https://www.darkhorsestocks.in)** · private | Subscription stock-research platform — REST + GraphQL, 3 payment gateways, cross-subdomain SSO, RN mobile app | `Node` · `GraphQL` · `MSSQL` · `React` |
+| **[Secrets Backup](https://file.shinobidata.com)** · private | Self-hosted, tamper-evident secrets vault on a single S3 bucket — a Vault / Doppler alternative at near-zero infra cost | `Next.js` · `AWS S3` · `TypeScript` |
+| **AWS ECS Consolidation** · private | Collapsed 3 AWS accounts + 4 EC2s into one ECS host — cut the cloud bill **75%** (~$2.6k/yr) with ~5s downtime | `AWS ECS` · `Docker` · `Nginx` · `Bash` |
 
-<sub>🔗 links go to live products · 🔒 = source private · also: React-Native & Flutter mobile apps, WhatsApp automation bots, internal tooling.</sub>
+<sub>Links go to live products · <em>private</em> = source not public · also: React-Native & Flutter mobile apps, WhatsApp automation bots, internal tooling.</sub>
 
 ---
 
