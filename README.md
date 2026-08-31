@@ -31,6 +31,9 @@
 ### 🚀 Featured projects
 
 <p align="center">
+  <a href="https://github.com/niyamvora/component-picker">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=niyamvora&repo=component-picker&theme=tokyonight&hide_border=true" />
+  </a>
   <a href="https://github.com/niyamvora/fontfetch">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=niyamvora&repo=fontfetch&theme=tokyonight&hide_border=true" />
   </a>
@@ -39,7 +42,9 @@
 | Project | What it does | Stack |
 | --- | --- | --- |
 | 🔤 **[fontfetch](https://github.com/niyamvora/fontfetch)** · OSS | Paste a URL, get every webfont — extracted, licence-classified, project-ready. One `npm i`, zero runtime deps | `TypeScript` · `Next.js` · `Node` |
+| 🎯 **[Component Picker](https://github.com/niyamvora/component-picker)** · OSS | Chrome & Firefox extension — hover any component on any site, click, and your clipboard holds an AI-ready bundle: HTML, browser-resolved CSS, forced hover/focus states, theme pairs, responsive diffs, design tokens | `TypeScript` · `Chrome MV3` · `CDP` · `MCP` |
 | 💬 **[SimpliDeliver](https://www.simplideliver.com)** 🔒 | Multi-channel CRM & customer-messaging platform — WhatsApp / Instagram / Messenger / Zalo in one inbox, in-chat payments, visual chatbot builder (~208k LOC) | `Next.js` · `Postgres` · `MongoDB` · `AWS` · `Terraform` |
+| 📧 **[SimpliDeliver Email](https://simplideliver.com/email/)** 🔒 | Developer-first transactional email platform on AWS SES — REST API with idempotency & full request logs, SES event pipeline with suppression, BYODKIM domain verification, dashboard, [SDK on npm](https://www.npmjs.com/package/simplideliver-email) & 351 pages of docs | `TypeScript` · `Hono` · `Next.js` · `AWS SES` · `Prisma` |
 | 🔐 **Enigma** 🔒 | Privacy-first native messenger — opt-in end-to-end-encrypted tier (MLS / RFC 9420), one Rust crypto core shared across iOS & Android | `Rust` · `Swift` · `Kotlin` · `Elixir` |
 | 📊 **[ShinobiData](https://shinobidata.com)** 🔒 | Bloomberg-grade equity research — 10k+ tickers, 200+ screener fields, sub-50ms filters, NL queries in 5 languages | `Next.js` · `React 19` · `Postgres` |
 | 🔌 **[ShinobiData MCP](https://github.com/dark-horse-stocks/shinobidata)** · OSS | Portfolio analytics + US-equity research as an MCP server — 32 OAuth-secured tools for Claude, ChatGPT & any MCP client, live at [mcp.shinobidata.com](https://mcp.shinobidata.com) | `MCP` · `OAuth 2.1` · `TypeScript` · `Postgres` |
@@ -113,15 +118,15 @@
 #### 💬 Languages by share of code
 
 ```text
-TypeScript    27.0 MB   ████████████░░░░░░░░░░░░░   49.61 %
-JavaScript    7.5 MB    ███░░░░░░░░░░░░░░░░░░░░░░   13.70 %
-HTML          5.0 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    9.25 %
-Kotlin        3.7 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    6.72 %
-Swift         2.9 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.37 %
-Python        2.9 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.32 %
-TSQL          1.3 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.39 %
-CSS           1.2 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.14 %
-Other         3.0 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.49 %
+TypeScript    30.8 MB   █████████████░░░░░░░░░░░░   51.51 %
+JavaScript    7.5 MB    ███░░░░░░░░░░░░░░░░░░░░░░   12.63 %
+HTML          5.2 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    8.67 %
+Kotlin        4.0 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    6.64 %
+Swift         3.2 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    5.34 %
+Python        2.9 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    4.86 %
+TSQL          1.3 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.18 %
+CSS           1.2 MB    █░░░░░░░░░░░░░░░░░░░░░░░░    2.09 %
+Other         3.6 MB    ██░░░░░░░░░░░░░░░░░░░░░░░    6.09 %
 ```
 
 #### 📊 Commits per month, split by language
@@ -130,14 +135,14 @@ Other         3.0 MB    █░░░░░░░░░░░░░░░░░�
 
 | Month | Commits | TypeScript | Kotlin | Swift | JavaScript | Elixir | Rust | Other |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Aug 2026 | **327** | 177 | 53 | 42 | 4 | 11 | 5 | 35 |
-| Jul 2026 | **746** | 418 | 123 | 97 | 27 | 25 | 10 | 46 |
-| Jun 2026 | **430** | 95 | 127 | 100 | 26 | 26 | 11 | 45 |
+| Aug 2026 | **755** | 430 | 99 | 81 | 14 | 21 | 8 | 102 |
+| Jul 2026 | **746** | 418 | 122 | 97 | 27 | 25 | 10 | 47 |
+| Jun 2026 | **430** | 95 | 126 | 100 | 26 | 26 | 10 | 47 |
 | May 2026 | **528** | 428 | · | · | 46 | · | · | 54 |
 | Apr 2026 | **120** | 96 | · | · | 15 | · | · | 9 |
 | Mar 2026 | **47** | 40 | · | · | 5 | · | · | 2 |
 
-<sub>Counted across 59 repos, 53 of them private. Generated from a local snapshot on 18 Aug 2026 — no third-party service, no WakaTime.</sub>
+<sub>Counted across 63 repos, 56 of them private. Generated from a local snapshot on 31 Aug 2026 — no third-party service, no WakaTime.</sub>
 
 <!--END_SECTION:github-stats-->
 
