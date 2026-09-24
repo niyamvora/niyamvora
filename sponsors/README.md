@@ -10,12 +10,14 @@
   <a href="https://x.com/niyamvora">X</a> ·
   <a href="https://www.linkedin.com/in/niyam-vora-1b7411333/">LinkedIn</a> ·
   <a href="https://github.com/niyamvora">GitHub</a> ·
+  <a href="https://www.npmjs.com/package/fontfetch">npm</a> ·
+  Resume (<a href="../resume/Niyam-Vora-Resume-light.pdf">light</a> / <a href="../resume/Niyam-Vora-Resume-dark.pdf">dark</a>) ·
   <a href="mailto:niyamvora@gmail.com">Email</a>
 </p>
 
 ### Hi, I'm Niyam 👋
 
-I spent 9+ years as a product manager in fintech, SaaS and CRM. I grew **DarkHorseStocks** to 64,000+ users, then learned to build the whole product myself, from schema to storefront.
+I've spent 9+ years as a product manager in fintech, SaaS and CRM. I joined the team building **[DarkHorseStocks](https://www.darkhorsestocks.in/)** when it had no users, and we grew it to **100k+ monthly visitors**. Along the way I learned to build the whole product myself, from schema to storefront.
 
 Now I open-source the tools I build for my own work: a native **macOS notch app**, a **webfont extractor**, a **component picker that AI agents can drive**, and a **free MCP server for equity research**. Your sponsorship keeps them **free, maintained, and shipping**.
 
@@ -28,7 +30,7 @@ Now I open-source the tools I build for my own work: a native **macOS notch app*
 
 <table>
   <tr>
-    <td width="50%"><a href="https://github.com/niyamvora/OpenNotch"><picture><source media="(prefers-color-scheme: dark)" srcset="card-opennotch-dark.svg"><img src="card-opennotch-light.svg" alt="OpenNotch" width="100%"></picture></a></td>
+    <td width="50%"><a href="https://github.com/niyamvora/ILoveNotch"><picture><source media="(prefers-color-scheme: dark)" srcset="card-ilovenotch-dark.svg"><img src="card-ilovenotch-light.svg" alt="ILoveNotch" width="100%"></picture></a></td>
     <td width="50%"><a href="https://github.com/niyamvora/fontfetch"><picture><source media="(prefers-color-scheme: dark)" srcset="card-fontfetch-dark.svg"><img src="card-fontfetch-light.svg" alt="fontfetch" width="100%"></picture></a></td>
   </tr>
   <tr>
@@ -50,30 +52,23 @@ claude mcp add component-picker -- npx component-picker-mcp  # let your agent pi
 
 ShinobiData MCP: in Claude or ChatGPT, go to **Settings → Connectors → Add custom** and paste `https://mcp.shinobidata.com/api/mcp/mcp`. It's free, and you sign in with OAuth.
 
-## Also shipped (commercial, closed source)
+**Also contributing to [OpenMLS](https://github.com/niyamvora/openmls)**, the Rust implementation of the Messaging Layer Security (MLS) end-to-end encryption protocol.
 
-| Product | What it does |
+## Products I've worked on
+
+| Product | What it is |
 | --- | --- |
-| **[ShinobiData](https://shinobidata.com)** | Bloomberg-style equity research. 10k+ tickers, 200+ screener fields, sub-50 ms filters |
-| **[SimpliDeliver](https://www.simplideliver.com)** | Multi-channel CRM. WhatsApp, Instagram, Messenger and Zalo in one inbox, with in-chat payments |
+| **[DarkHorseStocks](https://www.darkhorsestocks.in/)** | Stock research platform I helped build from zero users to **100k+ monthly visitors**, with ~19k followers on [Instagram](https://www.instagram.com/darkhorse_stocks). Scroll to the bottom of the site for the custom-designed footer. |
+| **[SimpliDeliver](http://www.simplideliver.com/)** | Marketing CRM that sends **up to 100k messages a minute** across WhatsApp, Instagram, Messenger and Zalo |
+| **[ShinobiData](https://www.shinobidata.com/en)** | US stock data analysis platform, similar to Screener and Tijori |
+| **[OpCreative](https://opcreative.us/)** | Warehouse management and print-on-demand fulfillment for a Vietnamese client |
 | **[SimpliDeliver Email](https://simplideliver.com/email/)** | Transactional email on AWS SES, with a REST API, event pipeline, BYODKIM and an [npm SDK](https://www.npmjs.com/package/simplideliver-email) |
-| **[OpCreative](https://opcreative.us)** | Print-on-demand fulfillment platform, with a zero-downtime cutover from the legacy system |
-| **[DarkHorseStocks](https://www.darkhorsestocks.in)** | Subscription stock research for 64k+ Indian retail investors, plus a real-time markets terminal |
 | **Enigma** | Privacy-first messenger with an MLS end-to-end encryption tier and one Rust crypto core for iOS and Android |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="divider-dark.svg">
   <img src="divider-light.svg" alt="" width="100%">
 </picture>
-
-## Where your sponsorship goes
-
-| | Cost | Unlocks |
-| --- | --- | --- |
-| 🍎 Apple Developer Program | $99 / year | Signed and notarized OpenNotch builds: no Gatekeeper warning, Sparkle auto-updates |
-| 🧩 Chrome Web Store listing | $5 once | One-click install for Component Picker (today it's a manual unpacked install) |
-| ☁️ Hosting | ~$20 / month | Keeping ShinobiData MCP free, and launching the fontfetch web app |
-| ⏱️ **Time** | **goal: $1,000 / month** | **One full day every week on open source: issues, releases, new tools** |
 
 ## Tiers
 
