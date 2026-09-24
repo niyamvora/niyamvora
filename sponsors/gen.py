@@ -387,6 +387,18 @@ def journey(t):
     return s.render("The path: " + "; ".join(f"{y} {a} {b}" for y, a, b in JOURNEY))
 
 
+def grid(t):
+    """All project cards in one image. Each card is nested as its own SVG so their font subsets can't clash."""
+    cw, ch, gap = 620, 300, 40
+    rows = (len(PROJECTS) + 1) // 2
+    s = SVG(2 * cw + gap, rows * ch + (rows - 1) * gap // 2, t)
+    for i, p in enumerate(PROJECTS):
+        b64 = base64.b64encode(card(t, i + 1, p).encode()).decode()
+        x, y = (i % 2) * (cw + gap), (i // 2) * (ch + gap // 2)
+        s.raw(f'<image href="data:image/svg+xml;base64,{b64}" x="{x}" y="{y}" width="{cw}" height="{ch}"/>')
+    return s.render("Open-source projects: " + ", ".join(p["name"] for p in PROJECTS))
+
+
 def divider(t):
     s = SVG(1280, 24, t)
     s.hatch(0, 1, 1280, 22)
@@ -424,6 +436,7 @@ if __name__ == "__main__":
         (OUT / f"wall-{mode}.svg").write_text(wall(t))
         (OUT / f"products-{mode}.svg").write_text(dock(t))
         (OUT / f"hire-{mode}.svg").write_text(hire(t))
+        (OUT / f"projects-{mode}.svg").write_text(grid(t))
         (OUT / f"journey-{mode}.svg").write_text(journey(t))
         for i, p in enumerate(PROJECTS, 1):
             (OUT / f"card-{p['slug']}-{mode}.svg").write_text(card(t, i, p))
