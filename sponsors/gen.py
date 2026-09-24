@@ -1,0 +1,312 @@
+"""Generate the GitHub Sponsors profile art (light + dark SVGs).
+
+Style mirrors the resume: monochrome grid lines, hatched dividers, mono labels,
+handwritten margin notes. Fonts are subset + embedded as base64 woff2 because
+GitHub serves SVGs as sandboxed images (no web fonts).
+
+  python3 -m venv venv && ./venv/bin/pip install fonttools brotli
+  ./venv/bin/python sponsors/gen.py        # writes sponsors/*.svg
+
+Fonts: Geist + Geist Mono (Vercel, OFL) from ~/Library/Fonts, Caveat (OFL) from
+FONT_DIR. Edit PROJECTS / STATS below and re-run to refresh the art.
+"""
+import base64, io, logging, os
+from pathlib import Path
+from fontTools.ttLib import TTFont
+from fontTools import subset
+
+logging.getLogger("fontTools.subset").setLevel(logging.ERROR)
+OUT = Path(__file__).parent
+HOME_FONTS = Path.home() / "Library/Fonts"
+FONT_DIR = Path(os.environ.get("FONT_DIR", OUT.parent.parent / "fonts"))
+FONTS = {
+    "sans": HOME_FONTS / "Geist-Regular.otf",
+    "sans-semi": HOME_FONTS / "Geist-SemiBold.otf",
+    "mono": HOME_FONTS / "GeistMono-Regular.otf",
+    "hand": FONT_DIR / "Caveat.ttf",
+}
+
+THEMES = {
+    "light": dict(bg="#ffffff", fg="#09090b", fg2="#3f3f46", muted="#71717a",
+                  line="#e4e4e7", hatch="#e4e4e7", soft="#f4f4f5", accent="#2563eb", ok="#16a34a", warn="#d97706"),
+    "dark": dict(bg="#09090b", fg="#fafafa", fg2="#d4d4d8", muted="#a1a1aa",
+                 line="#27272a", hatch="#27272a", soft="#18181b", accent="#3b82f6", ok="#22c55e", warn="#f59e0b"),
+}
+
+STATS = [
+    ("64k+", "users on DarkHorseStocks"),
+    ("2.6k", "commits in the last 6 months"),
+    ("12+", "products shipped end to end"),
+    ("6", "open-source projects"),
+]
+
+# ponytail: status is static text; stars/versions don't auto-update. Re-run gen.py after releases.
+PROJECTS = [
+    dict(slug="opennotch", kind="macOS app", name="OpenNotch", status=("building", "warn"),
+         note="my daily driver", url="github.com/niyamvora/OpenNotch",
+         desc="Turns the MacBook notch into a tray for media, files, tasks and notes. "
+              "Native SwiftUI + AppKit, local-first, near-zero idle CPU.",
+         stack=["Swift", "SwiftUI", "AppKit", "macOS"]),
+    dict(slug="fontfetch", kind="CLI + npm", name="fontfetch", status=("npm", "ok"),
+         note="zero deps!", url="github.com/niyamvora/fontfetch",
+         desc="Paste a URL, get every webfont: extracted, licence-classified and "
+              "project-ready with CSS, manifest and framework configs.",
+         stack=["TypeScript", "Node", "CLI", "npm"]),
+    dict(slug="component-picker", kind="Chrome extension + MCP", name="Component Picker", status=("v1.8", "ok"),
+         note="agents can drive it", url="github.com/niyamvora/component-picker",
+         desc="Click any component on any site, copy an AI-ready bundle: HTML, resolved "
+              "CSS, hover states, responsive diffs. Ships an MCP server for agents.",
+         stack=["TypeScript", "Chrome MV3", "CDP", "MCP"]),
+    dict(slug="shinobidata-mcp", kind="MCP server", name="ShinobiData MCP", status=("live", "ok"),
+         note="free for everyone", url="shinobidata.com/mcp",
+         desc="Portfolio analytics + US-equity research inside Claude, ChatGPT and any "
+              "MCP client. 32 OAuth-protected tools, 10k+ tickers.",
+         stack=["MCP", "OAuth 2.1", "TypeScript", "Postgres"]),
+    dict(slug="chimes", kind="interactive web", name="Chimes", status=("live", "ok"),
+         note="drag the strings", url="niyamvora.github.io/chimes",
+         desc="Every country becomes a beaded doorway curtain, woven from its architecture, "
+              "wisdom and language, with synthesized chimes you can play.",
+         stack=["JavaScript", "Web Audio", "Canvas"]),
+    dict(slug="notionaly", kind="AI prompts + skills", name="Notionaly", status=("live", "ok"),
+         note="photo to line art", url="github.com/niyamvora/niyam-notionaly",
+         desc="Notion-style illustrations, icons and infographics with AI. Monochrome "
+              "hand-drawn line art as SVG/PNG, prompts for ChatGPT, Claude and Gemini.",
+         stack=["Prompts", "SVG", "Codex skills"]),
+]
+
+WALL = [("Platinum", 2), ("Gold", 3), ("Silver", 4), ("Spark Supporters", 6)]
+
+# ---------------------------------------------------------------- font helpers
+_tt = {k: TTFont(p) for k, p in FONTS.items()}
+
+
+def width(text, font, size):
+    f = _tt[font]
+    cmap, hmtx, upm = f.getBestCmap(), f["hmtx"], f["head"].unitsPerEm
+    return sum(hmtx[cmap.get(ord(c), cmap[ord("?")])][0] for c in text) * size / upm
+
+
+def wrap(text, font, size, max_w):
+    lines, cur = [], ""
+    for word in text.split():
+        trial = f"{cur} {word}".strip()
+        if width(trial, font, size) <= max_w:
+            cur = trial
+        else:
+            lines.append(cur)
+            cur = word
+    return lines + [cur]
+
+
+def font_face(used):
+    """@font-face rules with each font subset to exactly the characters used."""
+    css = []
+    for key, chars in used.items():
+        opts = subset.Options()
+        opts.flavor, opts.layout_features = "woff2", ["kern", "liga"]
+        f = TTFont(FONTS[key])
+        s = subset.Subsetter(opts)
+        s.populate(text="".join(sorted(set(chars))) + " ?")
+        s.subset(f)
+        buf = io.BytesIO()
+        f.flavor = "woff2"
+        f.save(buf)
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        css.append(f"@font-face{{font-family:'{key}';src:url(data:font/woff2;base64,{b64}) format('woff2')}}")
+    return "".join(css)
+
+
+def esc(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+class SVG:
+    def __init__(self, w, h, t):
+        self.w, self.h, self.t, self.parts, self.used = w, h, t, [], {}
+
+    def text(self, x, y, s, font="sans", size=16, fill="fg", anchor="start", extra=""):
+        self.used.setdefault(font, []).append(s)
+        self.parts.append(
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="{font}" font-size="{size}" '
+            f'fill="{self.t.get(fill, fill)}" text-anchor="{anchor}" {extra}>{esc(s)}</text>')
+
+    def line(self, x1, y1, x2, y2, color="line", w=1, extra=""):
+        self.parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{self.t.get(color, color)}" stroke-width="{w}" {extra}/>')
+
+    def hatch(self, x, y, w, h):
+        self.parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="url(#hatch)"/>')
+        self.line(x, y, x + w, y)
+        self.line(x, y + h, x + w, y + h)
+
+    def raw(self, s):
+        self.parts.append(s)
+
+    def render(self, title):
+        t = self.t
+        return (
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.w}" height="{self.h}" '
+            f'viewBox="0 0 {self.w} {self.h}" role="img" aria-label="{esc(title)}">'
+            f"<title>{esc(title)}</title>"
+            f"<defs><style>{font_face(self.used)}</style>"
+            f'<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
+            f'<line x1="0" y1="0" x2="0" y2="7" stroke="{t["hatch"]}" stroke-width="1.6"/></pattern></defs>'
+            f'<rect width="100%" height="100%" fill="{t["bg"]}"/>' + "".join(self.parts) + "</svg>")
+
+
+def pill(svg, right_x, y, label, tone):
+    w = width(label, "mono", 12) + 30
+    x = right_x - w
+    t = svg.t
+    svg.raw(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="24" rx="12" fill="none" stroke="{t["line"]}"/>')
+    svg.raw(f'<circle cx="{x + 12:.1f}" cy="{y + 12}" r="3.5" fill="{t[tone]}"/>')
+    svg.text(x + 21, y + 16.5, label, "mono", 12, "fg2")
+
+
+def chips(svg, x, y, items):
+    for it in items:
+        w = width(it, "mono", 12) + 18
+        svg.raw(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="24" rx="5" fill="{svg.t["soft"]}" stroke="{svg.t["line"]}"/>')
+        svg.text(x + 9, y + 16.5, it, "mono", 12, "fg2")
+        x += w + 8
+
+
+# icons: 16px lucide-style strokes
+ICONS = {
+    "pin": '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "link": '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+    "x": '<path d="M4 4l16 16M20 4L4 20"/>',
+    "code": '<path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/>',
+    "heart": '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+}
+
+
+def icon(svg, name, x, y, color="muted"):
+    svg.raw(f'<g transform="translate({x},{y}) scale(0.75)" fill="none" stroke="{svg.t[color]}" '
+            f'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ICONS[name]}</g>')
+
+
+def arrow(svg, d, color="muted"):
+    svg.raw(f'<path d="{d}" fill="none" stroke="{svg.t[color]}" stroke-width="1.4" stroke-linecap="round"/>')
+
+
+# ---------------------------------------------------------------- art
+def banner(t):
+    W, H, L, R = 1280, 470, 132, 1148
+    s = SVG(W, H, t)
+    s.line(L, 0, L, H)
+    s.line(R, 0, R, H)
+    s.hatch(0, 0, W, 22)
+    # header
+    s.raw(f'<circle cx="{L + 70}" cy="96" r="50" fill="{t["soft"]}" stroke="{t["line"]}"/>')
+    s.text(L + 70, 110, "NV", "sans", 38, "fg", "middle")
+    s.line(L + 140, 22, L + 140, 170)
+    nx = L + 164
+    s.text(nx, 98, "Niyam Vora", "sans-semi", 50, "fg")
+    bx = nx + width("Niyam Vora", "sans-semi", 50) + 22
+    s.raw(f'<circle cx="{bx}" cy="82" r="12" fill="{t["accent"]}"/>'
+          f'<path d="M{bx - 5} 82l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>')
+    s.line(nx - 24, 124, R, 124)
+    s.text(nx, 153, "Product Manager / Full-Stack Engineer. I ship products that compound.", "mono", 15, "muted")
+    s.hatch(0, 170, W, 22)
+    # info rows
+    rows = [("pin", "Hanoi, Vietnam · ICT (UTC+7)", "link", "niyamvora.vercel.app"),
+            ("clock", "9+ years · fintech, SaaS, CRM, devtools", "x", "x.com/niyamvora"),
+            ("code", "PM @OpCreative · ShinobiData · SimpliDeliver", "heart", "github.com/sponsors/niyamvora")]
+    mid = L + (R - L) // 2 + 30
+    s.line(mid - 20, 192, mid - 20, 300)
+    for i, (i1, t1, i2, t2) in enumerate(rows):
+        y = 224 + i * 32
+        icon(s, i1, L + 24, y - 13)
+        s.text(L + 52, y, t1, "mono", 15, "fg2")
+        icon(s, i2, mid + 4, y - 13)
+        s.text(mid + 32, y, t2, "mono", 15, "fg2")
+    s.hatch(0, 300, W, 22)
+    # stats
+    cw = (R - L) / len(STATS)
+    for i, (num, label) in enumerate(STATS):
+        x = L + i * cw
+        if i:
+            s.line(x, 322, x, 448)
+        s.text(x + 26, 392, num, "sans-semi", 46, "fg")
+        s.text(x + 26, 424, label, "mono", 13, "muted")
+        if i == 0:
+            s.raw(f'<circle cx="{x + 26 + width(num, "sans-semi", 46) + 14}" cy="360" r="5" fill="{t["accent"]}"/>')
+    s.hatch(0, 448, W, 22)
+    # margin notes
+    s.text(22, 70, "finance", "hand", 21, "muted", extra='transform="rotate(-6 22 70)"')
+    arrow(s, "M86 60 h22 M102 54 l6 6 l-6 6")
+    s.text(20, 94, "engineering,", "hand", 21, "muted", extra='transform="rotate(-6 20 94)"')
+    s.text(26, 118, "built layer", "hand", 21, "muted", extra='transform="rotate(-6 26 118)"')
+    s.text(30, 142, "by layer", "hand", 21, "muted", extra='transform="rotate(-6 30 142)"')
+    arrow(s, "M66 150 C 80 158, 96 150, 112 128 M104 128 l8 0 l-1 8")
+    s.text(1162, 350, "every sponsor", "hand", 21, "muted", extra='transform="rotate(5 1162 350)"')
+    s.text(1166, 374, "ships more", "hand", 21, "muted", extra='transform="rotate(5 1166 374)"')
+    s.text(1170, 398, "open source", "hand", 21, "muted", extra='transform="rotate(5 1170 398)"')
+    arrow(s, "M1206 408 C 1214 424, 1204 436, 1190 440 M1196 434 l-6 6 l8 2")
+    return s.render("Niyam Vora — Product Manager / Full-Stack Engineer")
+
+
+def card(t, i, p):
+    W, H, P = 620, 300, 26
+    s = SVG(W, H, t)
+    s.raw(f'<rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="14" fill="none" stroke="{t["line"]}"/>')
+    s.raw(f'<clipPath id="c"><rect width="{W}" height="{H}" rx="14"/></clipPath>')
+    s.raw('<g clip-path="url(#c)">')
+    s.hatch(0, 0, W, 16)
+    s.raw("</g>")
+    s.text(P, 46, f"{i:02d}", "mono", 13, "muted")
+    s.text(P + 28, 46, p["kind"], "mono", 13, "muted")
+    pill(s, W - P, 28, p["status"][0], p["status"][1])
+    s.line(0, 66, W, 66)
+    s.text(P, 112, p["name"], "sans-semi", 32, "fg")
+    ax = P + width(p["name"], "sans-semi", 32) + 10
+    arrow(s, f"M{ax} 104 l12 -12 M{ax + 3} 92 h9 v9", "muted")
+    s.text(W - P, 110, p["note"], "hand", 22, "accent", "end", extra=f'transform="rotate(-4 {W - P} 110)"')
+    for j, ln in enumerate(wrap(p["desc"], "sans", 16, W - 2 * P)[:3]):
+        s.text(P, 146 + j * 24, ln, "sans", 16, "fg2")
+    chips(s, P, 216, p["stack"])
+    s.line(0, 256, W, 256)
+    s.text(P, 284, "↗  " + p["url"], "mono", 13, "muted")
+    return s.render(f'{p["name"]} — {p["desc"]}')
+
+
+def divider(t):
+    s = SVG(1280, 24, t)
+    s.hatch(0, 1, 1280, 22)
+    return s.render("divider")
+
+
+def wall(t):
+    W, L = 1280, 40
+    rows_h = [(n, k, 120 if k <= 2 else 96 if k <= 3 else 76 if k <= 4 else 58) for n, k in WALL]
+    H = 40 + sum(h + 56 for _, _, h in rows_h) + 30
+    s = SVG(W, H, t)
+    s.hatch(0, 0, W, 20)
+    y = 40
+    for name, k, h in rows_h:
+        s.text(L, y + 22, name.upper(), "mono", 13, "muted", extra='letter-spacing="1.5"')
+        s.line(L + width(name.upper(), "mono", 13) + 30, y + 17, W - L, y + 17)
+        y += 36
+        gap = 16
+        cw = (W - 2 * L - gap * (k - 1)) / k
+        for j in range(k):
+            x = L + j * (cw + gap)
+            s.raw(f'<rect x="{x:.1f}" y="{y}" width="{cw:.1f}" height="{h}" rx="10" fill="none" '
+                  f'stroke="{t["muted"]}" stroke-opacity=".55" stroke-dasharray="6 6"/>')
+            if j == 0:
+                s.text(x + cw / 2, y + h / 2 + 7, "your logo here", "hand", 22 if h > 60 else 19, "muted", "middle")
+        y += h + 20
+    s.hatch(0, H - 20, W, 20)
+    return s.render("Sponsors — your logo here")
+
+
+if __name__ == "__main__":
+    for mode, t in THEMES.items():
+        (OUT / f"banner-{mode}.svg").write_text(banner(t))
+        (OUT / f"divider-{mode}.svg").write_text(divider(t))
+        (OUT / f"wall-{mode}.svg").write_text(wall(t))
+        for i, p in enumerate(PROJECTS, 1):
+            (OUT / f"card-{p['slug']}-{mode}.svg").write_text(card(t, i, p))
+    for f in sorted(OUT.glob("*.svg")):
+        print(f"{f.stat().st_size / 1024:6.1f} KB  {f.name}")
