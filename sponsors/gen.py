@@ -27,9 +27,9 @@ FONTS = {
 }
 
 THEMES = {
-    "light": dict(bg="#ffffff", fg="#09090b", fg2="#3f3f46", muted="#71717a",
+    "light": dict(mode="light", bg="#ffffff", fg="#09090b", fg2="#3f3f46", muted="#71717a",
                   line="#e4e4e7", hatch="#e4e4e7", soft="#f4f4f5", accent="#2563eb", ok="#16a34a", warn="#d97706"),
-    "dark": dict(bg="#09090b", fg="#fafafa", fg2="#d4d4d8", muted="#a1a1aa",
+    "dark": dict(mode="dark", bg="#09090b", fg="#fafafa", fg2="#d4d4d8", muted="#a1a1aa",
                  line="#27272a", hatch="#27272a", soft="#18181b", accent="#3b82f6", ok="#22c55e", warn="#f59e0b"),
 }
 
@@ -58,7 +58,7 @@ PROJECTS = [
               "CSS, hover states, responsive diffs. Ships an MCP server for agents.",
          stack=["TypeScript", "Chrome MV3", "CDP", "MCP"]),
     dict(slug="shinobidata-mcp", kind="MCP server", name="ShinobiData MCP", status=("live", "ok"),
-         note="free for everyone", url="shinobidata.com/mcp",
+         note="free for everyone", url="shinobidata.com/mcp", logo="logos/shinobidata.png",
          desc="Portfolio analytics + US-equity research inside Claude, ChatGPT and any "
               "MCP client. 32 OAuth-protected tools, 10k+ tickers.",
          stack=["MCP", "OAuth 2.1", "TypeScript", "Postgres"]),
@@ -72,6 +72,15 @@ PROJECTS = [
          desc="Notion-style illustrations, icons and infographics with AI. Monochrome "
               "hand-drawn line art as SVG/PNG, prompts for ChatGPT, Claude and Gemini.",
          stack=["Prompts", "SVG", "Codex skills"]),
+]
+
+# Product dock. "{mode}" in a logo path picks the light/dark file.
+PRODUCTS = [
+    ("DarkHorseStocks", "100k+ visitors / mo", "logos/darkhorsestocks.png"),
+    ("SimpliDeliver", "100k messages / min", "logos/simplideliver-{mode}.png"),
+    ("ShinobiData", "US stock research", "logos/shinobidata.png"),
+    ("Enigma", "E2E-encrypted chat", "logos/enigma.png"),
+    ("ILoveNotch", "macOS notch app", "logos/ilovenotch.png"),
 ]
 
 WALL = [("Platinum", 2), ("Gold", 3), ("Silver", 4), ("Spark Supporters", 6)]
@@ -263,8 +272,7 @@ def card(t, i, p):
     s.line(0, 66, W, 66)
     nx = P
     if p.get("logo"):  # optional project logo, embedded so the card stays one self-contained file
-        b64 = base64.b64encode((OUT / p["logo"]).read_bytes()).decode()
-        s.raw(f'<image href="data:image/png;base64,{b64}" x="{P - 4}" y="78" width="46" height="46"/>')
+        s.raw(image(p["logo"], t, P - 4, 78, 46))
         nx += 52
     s.text(nx, 112, p["name"], "sans-semi", 32, "fg")
     ax = nx + width(p["name"], "sans-semi", 32) + 10
@@ -276,6 +284,32 @@ def card(t, i, p):
     s.line(0, 256, W, 256)
     s.text(P, 284, "↗  " + p["url"], "mono", 13, "muted")
     return s.render(f'{p["name"]} — {p["desc"]}')
+
+
+def image(path, t, x, y, size):
+    b64 = base64.b64encode((OUT / path.format(mode=t["mode"])).read_bytes()).decode()
+    return f'<image href="data:image/png;base64,{b64}" x="{x}" y="{y}" width="{size}" height="{size}"/>'
+
+
+def dock(t):
+    W, H, I = 1280, 300, 104
+    s = SVG(W, H, t)
+    s.hatch(0, 0, W, 20)
+    s.text(40, 60, "PRODUCTS I'VE BUILT & WORKED ON", "mono", 13, "muted", extra='letter-spacing="1.5"')
+    s.line(40 + width("PRODUCTS I'VE BUILT & WORKED ON", "mono", 13) + 30, 55, W - 40, 55)
+    cw = (W - 80) / len(PRODUCTS)
+    for i, (name, sub, logo) in enumerate(PRODUCTS):
+        cx = 40 + cw * i + cw / 2
+        s.raw(f'<rect x="{cx - I / 2 + 2}" y="{92 + 4}" width="{I}" height="{I}" rx="{I * .225}" fill="{t["fg"]}" opacity=".08"/>')
+        s.raw(image(logo, t, cx - I / 2, 88, I))
+        s.raw(f'<rect x="{cx - I / 2}" y="88" width="{I}" height="{I}" rx="{I * .225}" fill="none" stroke="{t["line"]}"/>')
+        s.text(cx, 228, name, "sans-semi", 19, "fg", "middle")
+        s.text(cx, 252, sub, "mono", 12, "muted", "middle")
+    s.text(40 + cw / 2 - I / 2 - 14, 110, "where it", "hand", 19, "accent", "end", extra='transform="rotate(-8 90 110)"')
+    s.text(40 + cw / 2 - I / 2 - 14, 132, "started", "hand", 19, "accent", "end", extra='transform="rotate(-8 90 132)"')
+    arrow(s, f"M{40 + cw / 2 - I / 2 - 40} 142 C {40 + cw / 2 - I / 2 - 30} 160, {40 + cw / 2 - I / 2 - 14} 158, {40 + cw / 2 - I / 2 - 6} 148", "accent")
+    s.hatch(0, H - 20, W, 20)
+    return s.render("Products: " + ", ".join(p[0] for p in PRODUCTS))
 
 
 def divider(t):
@@ -313,6 +347,7 @@ if __name__ == "__main__":
         (OUT / f"banner-{mode}.svg").write_text(banner(t))
         (OUT / f"divider-{mode}.svg").write_text(divider(t))
         (OUT / f"wall-{mode}.svg").write_text(wall(t))
+        (OUT / f"products-{mode}.svg").write_text(dock(t))
         for i, p in enumerate(PROJECTS, 1):
             (OUT / f"card-{p['slug']}-{mode}.svg").write_text(card(t, i, p))
     for f in sorted(OUT.glob("*.svg")):

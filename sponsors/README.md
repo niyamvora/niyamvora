@@ -56,14 +56,19 @@ ShinobiData MCP: in Claude or ChatGPT, go to **Settings → Connectors → Add c
 
 ## Products I've worked on
 
-| Product | What it is |
-| --- | --- |
-| **[DarkHorseStocks](https://www.darkhorsestocks.in/)** | Stock research platform I helped build from zero users to **100k+ monthly visitors**, with ~19k followers on [Instagram](https://www.instagram.com/darkhorse_stocks). Scroll to the bottom of the site for the custom-designed footer. |
-| **[SimpliDeliver](http://www.simplideliver.com/)** | Marketing CRM that sends **up to 100k messages a minute** across WhatsApp, Instagram, Messenger and Zalo |
-| **[ShinobiData](https://www.shinobidata.com/en)** | US stock data analysis platform, similar to Screener and Tijori |
-| **[OpCreative](https://opcreative.us/)** | Warehouse management and print-on-demand fulfillment for a Vietnamese client |
-| **[SimpliDeliver Email](https://simplideliver.com/email/)** | Transactional email on AWS SES, with a REST API, event pipeline, BYODKIM and an [npm SDK](https://www.npmjs.com/package/simplideliver-email) |
-| **Enigma** | Privacy-first messenger with an MLS end-to-end encryption tier and one Rust crypto core for iOS and Android |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="products-dark.svg">
+  <img src="products-light.svg" alt="DarkHorseStocks, SimpliDeliver, ShinobiData, Enigma and ILoveNotch app icons" width="100%">
+</picture>
+
+| | Product | What it is |
+| :---: | --- | --- |
+| <img src="logos/darkhorsestocks.png" width="28" alt=""> | **[DarkHorseStocks](https://www.darkhorsestocks.in/)** | Stock research platform I helped build from zero users to **100k+ monthly visitors**, with ~19k followers on [Instagram](https://www.instagram.com/darkhorse_stocks). Scroll to the bottom of the site for the custom-designed footer. |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="logos/simplideliver-dark.png"><img src="logos/simplideliver-light.png" width="28" alt=""></picture> | **[SimpliDeliver](http://www.simplideliver.com/)** | Marketing CRM that sends **up to 100k messages a minute** across WhatsApp, Instagram, Messenger and Zalo |
+| <img src="logos/shinobidata.png" width="28" alt=""> | **[ShinobiData](https://www.shinobidata.com/en)** | US stock data analysis platform, similar to Screener and Tijori |
+| | **[OpCreative](https://opcreative.us/)** | Warehouse management and print-on-demand fulfillment for a Vietnamese client |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="logos/simplideliver-dark.png"><img src="logos/simplideliver-light.png" width="28" alt=""></picture> | **[SimpliDeliver Email](https://simplideliver.com/email/)** | Transactional email on AWS SES, with a REST API, event pipeline, BYODKIM and an [npm SDK](https://www.npmjs.com/package/simplideliver-email) |
+| <img src="logos/enigma.png" width="28" alt=""> | **Enigma** | Privacy-first messenger with an MLS end-to-end encryption tier and one Rust crypto core for iOS and Android |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="divider-dark.svg">
