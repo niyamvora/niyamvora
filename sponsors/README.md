@@ -21,6 +21,32 @@ I've spent 9+ years as a product manager in fintech, SaaS and CRM. I joined the 
 
 Now I open-source the tools I build for my own work: a native **macOS notch app**, a **webfont extractor**, a **component picker that AI agents can drive**, and a **free MCP server for equity research**. Your sponsorship keeps them **free, maintained, and shipping**.
 
+## Open for work
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="hire-dark.svg">
+  <img src="hire-light.svg" alt="Open for work: Full-Stack Engineer, Forward Deployed Engineer, Product Engineer, Technical PM, AI / MCP Engineer" width="100%">
+</picture>
+
+I'm open to **full-time, contract and consulting** work as a **full-stack engineer**, **forward deployed engineer**, **product engineer** or **technical PM**. I work remotely from Vietnam (UTC+7) and have shipped with teams in India, Singapore and the US.
+
+| I can help you… | Where I've done it |
+| --- | --- |
+| **Go from idea to production.** Schema, API, UI, infra and launch, all owned end to end | [OpCreative](https://opcreative.us/): ~86k-line platform in production, cut over from the legacy system with zero downtime |
+| **Embed with your customers.** Forward-deployed: sit with the people using it and ship the integration they need | [SimpliDeliver](http://www.simplideliver.com/): 5 messaging channels and in-chat payments through Meta |
+| **Put AI on your data.** MCP servers, agents, tool calling, natural-language search | [ShinobiData MCP](https://shinobidata.com/mcp): 32 OAuth tools used from Claude and ChatGPT |
+| **Take payments anywhere.** India, Southeast Asia and global gateways | 11+ gateways: Stripe, PayPal, Razorpay, PayU, Cashfree, BillDesk, MoMo, ZaloPay… |
+| **Cut your cloud bill.** Consolidation and right-sizing on AWS | 3 AWS accounts into 1 ECS host: **-75%** monthly bill, ~5 s total downtime |
+| **Build fintech data products.** Screeners, ETL, real-time market data | [ShinobiData](https://www.shinobidata.com/en): 10k+ tickers, sub-50 ms filters |
+
+<p align="center">
+  <b>Let's talk →</b>
+  <a href="mailto:niyamvora@gmail.com?subject=Let%27s%20work%20together">Email me</a> ·
+  <a href="https://www.linkedin.com/in/niyam-vora-1b7411333/">LinkedIn</a> ·
+  <a href="https://x.com/niyamvora">DM on X</a> ·
+  <a href="../resume/Niyam-Vora-Resume-light.pdf">Resume</a>
+</p>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="divider-dark.svg">
   <img src="divider-light.svg" alt="" width="100%">
@@ -73,6 +99,11 @@ ShinobiData MCP: in Claude or ChatGPT, go to **Settings → Connectors → Add c
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="divider-dark.svg">
   <img src="divider-light.svg" alt="" width="100%">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="journey-dark.svg">
+  <img src="journey-light.svg" alt="The path: 2012 B.Tech in Electronics & Communication; 2016 into finance with CA Intermediate, a 3-year articleship and CFA Level I; 2017 joined DarkHorseStocks at zero users; 2022 SimpliDeliver; 2024 ShinobiData and Maisonnha; 2026 OpCreative and open source" width="100%">
 </picture>
 
 ## Tiers

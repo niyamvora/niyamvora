@@ -83,6 +83,24 @@ PRODUCTS = [
     ("ILoveNotch", "macOS notch app", "logos/ilovenotch.png"),
 ]
 
+ROLES = ["Full-Stack Engineer", "Forward Deployed Engineer", "Product Engineer", "Technical PM", "AI / MCP Engineer"]
+
+PROOF = [
+    ("-75%", "AWS bill after consolidation"),
+    ("95%", "faster search, 627 ms to 30 ms"),
+    ("11+", "payment gateways integrated"),
+    ("500+", "apartments taken online"),
+]
+
+JOURNEY = [
+    ("2012", "B.Tech, Electronics", "& Communication"),
+    ("2016", "Into finance: CA Inter,", "3-yr articleship, CFA L1"),
+    ("2017", "Joined DarkHorseStocks", "at zero users"),
+    ("2022", "SimpliDeliver", "multi-channel CRM"),
+    ("2024", "ShinobiData, Maisonnha", "fintech + hospitality"),
+    ("2026", "OpCreative + open source", "ILoveNotch, fontfetch, MCP"),
+]
+
 WALL = [("Platinum", 2), ("Gold", 3), ("Silver", 4), ("Spark Supporters", 6)]
 
 # ---------------------------------------------------------------- font helpers
@@ -114,6 +132,8 @@ def font_face(used):
         opts = subset.Options()
         opts.flavor, opts.layout_features = "woff2", ["kern", "liga"]
         f = TTFont(FONTS[key])
+        missing = set("".join(chars)) - {chr(c) for c in f.getBestCmap()}
+        assert not missing, f"{key} font has no glyph for {missing}"  # would silently fall back to a system font
         s = subset.Subsetter(opts)
         s.populate(text="".join(sorted(set(chars))) + " ?")
         s.subset(f)
@@ -312,6 +332,61 @@ def dock(t):
     return s.render("Products: " + ", ".join(p[0] for p in PRODUCTS))
 
 
+def hire(t):
+    W, H, L, R = 1280, 440, 40, 1240
+    s = SVG(W, H, t)
+    s.hatch(0, 0, W, 20)
+    # pulsing "available" dot (SMIL animates inside <img> SVGs on GitHub)
+    s.raw(f'<circle cx="{L + 8}" cy="54" r="6" fill="{t["ok"]}"><animate attributeName="r" values="6;15" dur="1.8s" repeatCount="indefinite"/>'
+          f'<animate attributeName="opacity" values=".45;0" dur="1.8s" repeatCount="indefinite"/></circle>'
+          f'<circle cx="{L + 8}" cy="54" r="6" fill="{t["ok"]}"/>')
+    s.text(L + 28, 59, "OPEN FOR WORK", "mono", 14, "ok", extra='letter-spacing="2"')
+    s.text(R, 59, "Remote · UTC+7 · full-time, contract or consulting", "mono", 14, "muted", "end")
+    s.line(0, 88, W, 88)
+    s.text(L, 148, "I ship your next product, end to end.", "sans-semi", 42, "fg")
+    s.text(L, 184, "Business layer + systems layer: CA + CFA background, production TypeScript, mobile and AWS.",
+           "mono", 15, "muted")
+    x = L
+    for r in ROLES:
+        w = width(r, "sans", 16) + 32
+        s.raw(f'<rect x="{x:.1f}" y="210" width="{w:.1f}" height="36" rx="18" fill="{t["soft"]}" stroke="{t["line"]}"/>')
+        s.text(x + 16, 233, r, "sans", 16, "fg")
+        x += w + 10
+    s.text(R, 236, "let's build", "hand", 26, "accent", "end", extra=f'transform="rotate(-6 {R} 236)"')
+    s.hatch(0, 272, W, 20)
+    cw = (R - L) / len(PROOF)
+    for i, (num, label) in enumerate(PROOF):
+        cx = L + i * cw
+        if i:
+            s.line(cx, 292, cx, 420)
+        s.text(cx + (24 if i else 0), 360, num, "sans-semi", 44, "fg")
+        s.text(cx + (24 if i else 0), 392, label, "mono", 13, "muted")
+    s.hatch(0, 420, W, 20)
+    return s.render("Open for work: " + ", ".join(ROLES))
+
+
+def journey(t):
+    W, H, L, R, Y = 1280, 280, 130, 1150, 150
+    s = SVG(W, H, t)
+    s.hatch(0, 0, W, 20)
+    s.text(40, 60, "THE PATH", "mono", 13, "muted", extra='letter-spacing="1.5"')
+    s.line(40 + width("THE PATH", "mono", 13) + 30, 55, W - 40, 55)
+    s.line(L, Y, R, Y, "muted", 1.5)
+    step = (R - L) / (len(JOURNEY) - 1)
+    for i, (year, a, b) in enumerate(JOURNEY):
+        x, last = L + i * step, i == len(JOURNEY) - 1
+        s.raw(f'<circle cx="{x}" cy="{Y}" r="{9 if last else 6}" fill="{t["accent"] if last else t["bg"]}" '
+              f'stroke="{t["accent"] if last else t["fg"]}" stroke-width="2"/>')
+        s.text(x, Y - 22, year, "sans-semi", 20, "accent" if last else "fg", "middle")
+        s.text(x, Y + 36, a, "mono", 12.5, "fg2", "middle")
+        s.text(x, Y + 54, b, "mono", 12.5, "muted", "middle")
+    s.text(L + step * 1.5, Y - 58, "finance to engineering", "hand", 22, "accent", "middle",
+           extra=f'transform="rotate(-4 {L + step * 1.5} {Y - 58})"')
+    s.text(R + 16, Y - 58, "you are here", "hand", 20, "accent", "middle", extra=f'transform="rotate(-6 {R} {Y - 58})"')
+    s.hatch(0, H - 20, W, 20)
+    return s.render("The path: " + "; ".join(f"{y} {a} {b}" for y, a, b in JOURNEY))
+
+
 def divider(t):
     s = SVG(1280, 24, t)
     s.hatch(0, 1, 1280, 22)
@@ -348,6 +423,8 @@ if __name__ == "__main__":
         (OUT / f"divider-{mode}.svg").write_text(divider(t))
         (OUT / f"wall-{mode}.svg").write_text(wall(t))
         (OUT / f"products-{mode}.svg").write_text(dock(t))
+        (OUT / f"hire-{mode}.svg").write_text(hire(t))
+        (OUT / f"journey-{mode}.svg").write_text(journey(t))
         for i, p in enumerate(PROJECTS, 1):
             (OUT / f"card-{p['slug']}-{mode}.svg").write_text(card(t, i, p))
     for f in sorted(OUT.glob("*.svg")):
