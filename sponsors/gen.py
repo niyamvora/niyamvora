@@ -1,4 +1,4 @@
-"""Generate the GitHub Sponsors profile art (light + dark SVGs).
+"""Generate the GitHub profile + Sponsors profile art (light + dark SVGs).
 
 Style mirrors the resume: monochrome grid lines, hatched dividers, mono labels,
 handwritten margin notes. Fonts are subset + embedded as base64 woff2 because
@@ -103,6 +103,16 @@ JOURNEY = [
 
 WALL = [("Platinum", 2), ("Gold", 3), ("Silver", 4), ("Spark Supporters", 6)]
 
+# Mirrors the resume's Stack block, row for row.
+STACK = [
+    ("Language", ["TypeScript", "JavaScript", "Python", "Rust", "Elixir", "Swift", "Kotlin"]),
+    ("Frontend", ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "Motion", "Turborepo"]),
+    ("Mobile", ["Expo", "React Native", "SwiftUI", "Jetpack Compose"]),
+    ("Backend", ["Node.js", "Hono", "GraphQL", "Prisma", "Phoenix", "Python", "Flask"]),
+    ("Database", ["PostgreSQL", "SQL Server", "MongoDB", "Redis", "Prisma"]),
+    ("Cloud & DevOps", ["AWS", "Terraform", "Docker", "Nginx", "Vercel", "Cloudflare", "GitHub Actions", "Git"]),
+]
+
 # ---------------------------------------------------------------- font helpers
 _tt = {k: TTFont(p) for k, p in FONTS.items()}
 
@@ -191,12 +201,13 @@ def pill(svg, right_x, y, label, tone):
     svg.text(x + 21, y + 16.5, label, "mono", 12, "fg2")
 
 
-def chips(svg, x, y, items):
+def chips(svg, x, y, items, size=12):
     for it in items:
-        w = width(it, "mono", 12) + 18
-        svg.raw(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="24" rx="5" fill="{svg.t["soft"]}" stroke="{svg.t["line"]}"/>')
-        svg.text(x + 9, y + 16.5, it, "mono", 12, "fg2")
+        w = width(it, "mono", size) + 1.5 * size
+        svg.raw(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="{2 * size}" rx="{size * 5 / 12:g}" fill="{svg.t["soft"]}" stroke="{svg.t["line"]}"/>')
+        svg.text(x + 0.75 * size, y + 1.375 * size, it, "mono", size, "fg2")
         x += w + 8
+    return x - 8
 
 
 # icons: 16px lucide-style strokes
@@ -387,6 +398,30 @@ def journey(t):
     return s.render("The path: " + "; ".join(f"{y} {a} {b}" for y, a, b in JOURNEY))
 
 
+def stack(t):
+    """The resume's Stack block: numbered rows of chips inside the banner's frame."""
+    W, L, R, RH = 1280, 132, 1148, 54
+    H = 40 + len(STACK) * RH
+    s = SVG(W, H, t)
+    s.line(L, 0, L, H)
+    s.line(R, 0, R, H)
+    s.hatch(0, 0, W, 20)
+    for i, (label, items) in enumerate(STACK):
+        y = 20 + i * RH
+        if i:
+            s.line(0, y, W, y)
+        s.text(L + 22, y + 33, f"{i + 1:02d}", "mono", 13, "muted")
+        s.text(L + 52, y + 33, label, "sans", 16, "fg")
+        s.line(L + 200, y, L + 200, y + RH)
+        end = chips(s, L + 218, y + 13, items, 14)
+        assert end <= R - 16, f"{label} chips overflow the frame by {end - R + 16:.0f}px"
+    s.hatch(0, H - 20, W, 20)
+    for j, ln in enumerate(["every chip here", "ships to", "production"]):
+        s.text(1160 + 4 * j, 92 + 24 * j, ln, "hand", 21, "muted", extra=f'transform="rotate(5 {1160 + 4 * j} {92 + 24 * j})"')
+    arrow(s, "M1190 162 C 1178 184, 1166 190, 1152 186 M1159 181 l-7 5 l8 4")
+    return s.render("Stack: " + "; ".join(f"{k}: {', '.join(v)}" for k, v in STACK))
+
+
 def grid(t):
     """All project cards in one image. Each card is nested as its own SVG so their font subsets can't clash."""
     cw, ch, gap = 620, 300, 40
@@ -438,6 +473,7 @@ if __name__ == "__main__":
         (OUT / f"hire-{mode}.svg").write_text(hire(t))
         (OUT / f"projects-{mode}.svg").write_text(grid(t))
         (OUT / f"journey-{mode}.svg").write_text(journey(t))
+        (OUT / f"stack-{mode}.svg").write_text(stack(t))
         for i, p in enumerate(PROJECTS, 1):
             (OUT / f"card-{p['slug']}-{mode}.svg").write_text(card(t, i, p))
     for f in sorted(OUT.glob("*.svg")):
