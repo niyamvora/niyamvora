@@ -4,7 +4,7 @@
 
 ### Hi, I'm Niyam 👋
 
-I started as a product manager and grew into a full-stack engineer. I joined the team building **[DarkHorseStocks](https://www.darkhorsestocks.in/)** when it had no users and grew it to **64k+ registered users** and **100k+ monthly visitors**, learning to build the whole product myself along the way, from schema to storefront. Today, after 9+ years across fintech, SaaS and CRM, I ship production platforms end to end: TypeScript, Postgres, AWS and MCP servers for AI agents.
+I started as a product manager and grew into a full-stack engineer. I joined the team building **[DarkHorseStocks](https://www.darkhorsestocks.in/)** when it had no users and grew it to **100k+ registered users** and **100k+ monthly visitors**, learning to build the whole product myself along the way, from schema to storefront. Today, after 9+ years across fintech, SaaS and CRM, I ship production platforms end to end: TypeScript, Postgres, AWS and MCP servers for AI agents.
 
 Now I open-source the tools I build for my own work. Your sponsorship keeps them **free, maintained, and shipping**.
 
@@ -12,7 +12,7 @@ Now I open-source the tools I build for my own work. Your sponsorship keeps them
 
 <a href="https://github.com/niyamvora/niyamvora/tree/main/sponsors"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/projects-dark.svg"><img src="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/projects-light.svg" alt="ILoveNotch, fontfetch, Component Picker, ShinobiData MCP, Chimes, Notionaly" width="100%"></picture></a>
 
-[ILoveNotch](https://github.com/niyamvora/ILoveNotch) · [fontfetch](https://github.com/niyamvora/fontfetch) · [Component Picker](https://github.com/niyamvora/component-picker) · [ShinobiData MCP](https://shinobidata.com/mcp) · [Chimes](https://niyamvora.github.io/chimes/) · [Notionaly](https://github.com/niyamvora/niyam-notionaly) · contributing to [OpenMLS](https://github.com/niyamvora/openmls)
+[ILoveNotch](https://github.com/niyamvora/ILoveNotch) · [fontfetch](https://github.com/niyamvora/fontfetch) · [Component Picker](https://github.com/niyamvora/component-picker) · [ShinobiData MCP](https://shinobidata.com/mcp) · [Chimes](https://niyamvora.github.io/chimes/) · [Notionaly](https://github.com/niyamvora/niyam-notionaly) · contributing to [OpenMLS](https://github.com/openmls/openmls)
 
 ## Open for work
 
@@ -24,7 +24,7 @@ Full-time, contract or consulting: **full-stack engineer, forward deployed engin
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/products-dark.svg"><img src="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/products-light.svg" alt="DarkHorseStocks, SimpliDeliver, ShinobiData, Enigma, ILoveNotch" width="100%"></picture>
 
-[DarkHorseStocks](https://www.darkhorsestocks.in/) · [SimpliDeliver](http://www.simplideliver.com/) · [ShinobiData](https://www.shinobidata.com/en) · [OpCreative](https://opcreative.us/)
+[DarkHorseStocks](https://www.darkhorsestocks.in/) · [SimpliDeliver](http://www.simplideliver.com/) · [ShinobiData](https://www.shinobidata.com/en) · [OpCreative](https://opcreative.us/) · [Fundalysis](https://fundalysis.darkhorsestocks.in)
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/journey-dark.svg"><img src="https://raw.githubusercontent.com/niyamvora/niyamvora/main/sponsors/journey-light.svg" alt="The path from finance to engineering" width="100%"></picture>
 

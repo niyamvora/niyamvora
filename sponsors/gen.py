@@ -247,12 +247,12 @@ def banner(t):
     s.raw(f'<circle cx="{bx}" cy="82" r="12" fill="{t["accent"]}"/>'
           f'<path d="M{bx - 5} 82l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>')
     s.line(nx - 24, 124, R, 124)
-    s.text(nx, 153, "Product Manager / Full-Stack Engineer. I ship products that compound.", "mono", 15, "muted")
+    s.text(nx, 153, "Product manager turned full-stack engineer. I ship products that compound.", "mono", 15, "muted")
     s.hatch(0, 170, W, 22)
     # info rows
     rows = [("pin", "Hanoi, Vietnam · ICT (UTC+7)", "link", "niyamvora.vercel.app"),
             ("clock", "9+ years · fintech, SaaS, CRM, devtools", "x", "x.com/niyamvora"),
-            ("code", "PM @OpCreative · ShinobiData · SimpliDeliver", "heart", "github.com/sponsors/niyamvora")]
+            ("code", "Building @OpCreative · ShinobiData · SimpliDeliver", "heart", "github.com/sponsors/niyamvora")]
     mid = L + (R - L) // 2 + 30
     s.line(mid - 20, 192, mid - 20, 300)
     for i, (i1, t1, i2, t2) in enumerate(rows):
@@ -286,7 +286,7 @@ def banner(t):
     s.text(1166, 374, "ships more", "hand", 21, "muted", extra='transform="rotate(5 1166 374)"')
     s.text(1170, 398, "open source", "hand", 21, "muted", extra='transform="rotate(5 1170 398)"')
     arrow(s, "M1206 408 C 1214 424, 1204 436, 1190 440 M1196 434 l-6 6 l8 2")
-    return s.render("Niyam Vora — Product Manager / Full-Stack Engineer")
+    return s.render("Niyam Vora — product manager turned full-stack engineer")
 
 
 def card(t, i, p):
