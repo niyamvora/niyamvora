@@ -4,7 +4,7 @@
 
 ### Hi, I'm Niyam 👋
 
-I've spent 9+ years as a product manager in fintech, SaaS and CRM. I joined the team building **[DarkHorseStocks](https://www.darkhorsestocks.in/)** when it had no users, and we grew it to **100k+ monthly visitors**. Along the way I learned to build the whole product myself, from schema to storefront.
+I started as a product manager and grew into a full-stack engineer. I joined the team building **[DarkHorseStocks](https://www.darkhorsestocks.in/)** when it had no users and grew it to **64k+ registered users** and **100k+ monthly visitors**, learning to build the whole product myself along the way, from schema to storefront. Today, after 9+ years across fintech, SaaS and CRM, I ship production platforms end to end: TypeScript, Postgres, AWS and MCP servers for AI agents.
 
 Now I open-source the tools I build for my own work. Your sponsorship keeps them **free, maintained, and shipping**.
 
